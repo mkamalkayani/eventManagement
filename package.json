@@ -1,0 +1,22 @@
+{
+  "name": "eventmanagement",
+  "version": "1.0.0",
+  "description": "Frontend for an Event Management app",
+  "main": "main.js",
+  "scripts": {
+    "scss": "node-sass -w -o css sass/style.scss"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkamalkayani/eventManagement.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mkamalkayani/eventManagement/issues"
+  },
+  "homepage": "https://github.com/mkamalkayani/eventManagement#readme",
+  "devDependencies": {
+    "node-sass": "^4.9.0"
+  }
+}

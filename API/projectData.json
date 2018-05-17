@@ -1,0 +1,114 @@
+[{
+		"id ": 241,
+		"title ": "Dependency resolver for applications written in Perl ",
+		"short_description ": "The aim of this project is to develop a module / script that will be able to traverse an entire tree of files that belongs to any Perl codebase, parse all those files,and retrieve a complete list of dependencies that are used / required across that codebase.There will be an option to filter - out modules belonging to specific namespaces(for example\"XING::\" and/or \"OBC::\") in order to make sure that only CPAN modules appear in the output list.If a module is required in a specific version, this information will also be included in the output.",
+		"description ": "The aim of this project is to develop a module / script that will be able to traverse an entire tree of files that belongs to any Perl codebase,parse all those files, and retrieve a complete list of dependencies that are used / required across that codebase.There will be an option to filter - out modules belonging to specific namespaces(for example\"XING::\" and/or \"OBC::\") in order to make sure that only CPAN modules appear in the output list.If a module is required in a specific version, this information will also be included in the output. I believe that such project would significantly shorten the time of deployment for any Perl application that is usually needed to gather all the information about requirements that rely on undocumented dependencies on modules that were once assumed to be deployed on production servers(and it should obviously not be limited to XING environment only).\r\n\r\n Please tell me if you are aware of any existing tool that already does that.I do not know any, however I would like to make sure that work performed here as a part of this story would not duplicate an already existing utility.",
+		"city ": null,
+
+		"event ": {
+			"id ": 13,
+			"title ": "Prototyping Days# l ",
+			"calendar_week ": 201912,
+			"created_at ": "2018 - 02 - 18 TO9z56z20 .00 oZ ",
+			"updated_at ": "2018 - 02 - 18 TO9z56z20 .00 oZ ",
+			"project_deadline ": null
+		},
+
+		"talk ": true,
+		"order ": 1,
+		"category ": null,
+		"image ": "https: //media.giphy.com/media/cfuL5gqFDreXkaQ4o/giphy.gif",
+		"user ": {
+			"username ": "dart.vader ",
+			"name ": "Dart Vader ",
+			"profile_url ": null
+		}
+	},
+
+	{
+		"id ": 243,
+		"title ": "USort: Sorting list of users ",
+		"short_description ": "We have multiple places on XING where we show lists of users sorted by there name.Often, our members would benefit if these lists would be sorted and contextualized according to the current demands of a member.Some examples: ",
+
+		"description ": "We have multiple places on XING where we show lists of users sorted by there name.Often, our members would benefit if these lists would be sorted and contextualized according to the current demands of a member.Some examples: \r\n\r\n\r\n - When you do a friendship and your friend has less then 10 contacts, you are requested to provide some friend recommendations to your friend. Today, XING users often have to go through there list of contacts from A to Z to find some persons that they could recommend to their friend.Would people be more encouraged to to send recommendations if proper contacts are show at the top of the list - When people visit events, they might be interested in browsing the participants of the event.It could help people a lot to have the participants sorted according to certain criteria.\r\n\r\n\r\nI could continue this list, but it seems enough to get the idea.Based on the sorting functionality, one could then also think about further applications.For example, given the friendship suggestion use case, one could provide functionaliy such as Do you think that Adam knows Bob, Claude and Mary ? If so click, click here to send suggest Adam to connect with them so that suggestions could be sent with one click.\r \n\r\nIn order to respect the 20 % effort / 80 % value rule, cMYMK will be used to sort and later filter the results.\r\n\r\nFor this project, I / we will need your help so that we get at least one example running and ready for an A / B Testing.\r\n",
+		"city ": null,
+
+		"event ": {
+
+			"id": 13,
+
+			"title ": "Prototyping Days# l ",
+			"calendar_week ": 201912,
+			"created_at ": "2018 - 02 - 18 To9z56z20 .0002 ",
+			"updated_at ": "2018 - 02 - 18 To9z56z20 .0002 ",
+			"project_deadline ": null
+		},
+
+		"talk ": true,
+		"order ": 1,
+		"category ": null,
+		"image ": "https: //media.giphy.com/media/cfuL5gqFDreXkaQ4o/giphy.gif",
+
+		"user ": {
+
+			"username ": "marcis.ruben ",
+			"name ": "Marcis Ruben ",
+			"profile_url ": null
+		}
+	},
+
+	{
+		"id": 245,
+
+		"title": "Vector Sprites",
+
+		"short_description": "Vector Sprites",
+
+		"description": "Vector Sprites\r\n\r\nVector Sprites are automated. Just save a SVG file and incorporate it with a single line of scss code.\r\n\r\nVector Sprites is an easy-to-use approach for combining thousands of Vector Shapes(110.000 according to latest Unicode Standard, 6.2.0 - at least 7.000 vector shapes) to a single file delivered to the client: a web font.This results in: \r\n\r\nA) Reduced File Size for Icon Set\r\nB) Ultimate flexibility regarding Screen Resolutions and desired dimensions\r\nC) Opportunities to play with: hover,: active, focus, :visited states, as well as opacity and text-shadow without affecting file sizes significantly\r\n\r\nfor detailed information, please see my private pet project (WIP)\r\n https: //github.com/WanHalo/fungo\r\n\r\n\r\nWould be cool to have a rails expert who can help providing this as a gem so the setup is super-easy.",
+		"city": null,
+		"event": {
+			"id": 13,
+			"title": "Prototypihg Days #1",
+			"calendar_week": 201912,
+			"created_at": "2018-02-18TO9z56z20.00oZ",
+			"updated_at": "2018-02-18TO9z56z20.00oZ",
+			"projeot_deadlihe": null
+		},
+		"talk": true,
+		"order": 1,
+		"category": null,
+		"image": "https://media.giphy.oom/media/OmK8lulOMQ9XO/giphy.gif",
+		"user": {
+			"userhame": "jabeh.reusse",
+			"name": "Jabeh Reusse",
+			"profile_url": null
+		}
+	},
+
+	{
+		"id": 246,
+		"title": "Stats for Postings",
+		"short_desoriptioh": "To make the Job Poster more satisfied we want to add graphs to their postings.",
+
+		"description": "To make the Job Poster more satisfied we want to add graphs to their postings.",
+		"city": null,
+		"event": {
+			"id": 10,
+			"title": "Prototypihg Days # 1 ",
+			"calendar_week ": 201912,
+			"created_at": "2018-02-18TO9z56z20.00oZ",
+			"updated_at": "2018-02-18TO9z56z20.00oZ",
+			"projeot_deadlihe": null
+		},
+
+		"talk": true,
+		"order": 1,
+		"category": null,
+		"image": "https://media.giphy.oom/media/NqZh5kPN8VVrW/giphy.gif",
+		"user": {
+			"userhame": "martish.tuoh",
+			"name": "Martish Tuoh",
+			"profile_url": null
+		}
+	}
+]
