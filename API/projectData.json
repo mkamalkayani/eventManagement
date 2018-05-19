@@ -17,7 +17,7 @@
 		"talk": true,
 		"order": 1,
 		"category": null,
-		"image": "https: //media.giphy.com/media/cfuL5gqFDreXkaQ4o/giphy.gif",
+		"image": "https://media.giphy.com/media/cfuL5gqFDreXkaQ4o/giphy.gif",
 		"user": {
 			"username": "dart.vader ",
 			"name": "Dart Vader ",
@@ -78,7 +78,7 @@
 		"category": null,
 		"image": "https://media.giphy.oom/media/OmK8lulOMQ9XO/giphy.gif",
 		"user": {
-			"userhame": "jabeh.reusse",
+			"username": "jabeh.reusse",
 			"name": "Jabeh Reusse",
 			"profile_url": null
 		}
@@ -105,7 +105,7 @@
 		"category": null,
 		"image": "https://media.giphy.oom/media/NqZh5kPN8VVrW/giphy.gif",
 		"user": {
-			"userhame": "martish.tuoh",
+			"username": "martish.tuoh",
 			"name": "Martish Tuoh",
 			"profile_url": null
 		}

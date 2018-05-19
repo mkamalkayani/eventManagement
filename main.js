@@ -33,7 +33,7 @@ fetch('API/eventData.json')
 
 	for(let i=0; i<eventData.length; i++){
 		var event = `
-		<div class="event-header" id="id${eventData[i].id}">
+		<div class="event-header mb-1" id="id${eventData[i].id}">
 		<h6 class="card-header">${eventData[i].title}</h6>
 			<div class="event-body"></div>
 		</div>`;
@@ -44,7 +44,9 @@ fetch('API/eventData.json')
 		for(let j=0; j<projectData.length; j++){
 
 			if(eventData[i].id === projectData[j]["event"]["id"]){
-				var project = `<li class="project">${projectData[j]['title']}</li>`;
+				// var project = `<li class="project">${projectData[j]['title']}</li>`;
+				var project = createProjectModal(projectData[j]['id'], projectData[j]['title'], projectData[j]['short_description'], projectData[j]['description']);
+
 				var eventBody = document.querySelector(` #id${eventData[i].id} .event-body`);
 				eventBody.insertAdjacentHTML('beforeend',project);
 	    		// console.log(j,projectData[i]["event"]["id"]);
@@ -56,26 +58,34 @@ fetch('API/eventData.json')
  
 // Modal
 // Creating the moal behavior on Project list
-    `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectModalLong">
-      Launch demo modal
+function createProjectModal(id, title, shortDescription, description){
+    var projectModal = `<button type="button" class="btn btn-primary ml-4 my-2 d-block text-truncate" data-toggle="modal" data-target="#projectid${id}">
+      ${title}
     </button>
 
-    <div class="modal fade" id="projectModalLong" tabindex="-1" role="dialog" aria-labelledby="projectModalLongTitle" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+    <div class="modal fade" id="projectid${id}" tabindex="-1" role="dialog" aria-labelledby="projectModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="projectModalLongTitle">Modal title</h5>
+            <h5 class="modal-title" id="projectModalLongTitle">Project Title: ${title}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            ...
+          <div class="modal-body text-justify">
+            <p><strong>Short Description: </strong>${shortDescription}</p>
+            <p><strong>Description: </strong>${description}</p>
           </div>
           <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Like</button>
+          <button type="button" class="btn btn-primary">Comment</button>
+          <button type="button" class="btn btn-primary mr-auto">Join</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
     </div>`
+
+    return projectModal;
+}

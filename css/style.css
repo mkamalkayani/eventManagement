@@ -1,2 +1,8 @@
 body {
-  background-color: white; }
+  background-color: white;
+  text-overflow: ellipsis; }
+
+  button{
+  	text-overflow: ellipsis;
+  	overflow: hidden;
+  }
