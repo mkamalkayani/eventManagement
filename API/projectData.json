@@ -19,9 +19,9 @@
 		"category": null,
 		"image": "https: //media.giphy.com/media/cfuL5gqFDreXkaQ4o/giphy.gif",
 		"user": {
-			"username ": "dart.vader ",
-			"name ": "Dart Vader ",
-			"profile_url ": null
+			"username": "dart.vader ",
+			"name": "Dart Vader ",
+			"profile_url": null
 		}
 	},
 
@@ -39,8 +39,8 @@
 			"title": "Prototyping Days# l ",
 			"calender_week": 201912,
 			"created_at": "2018 - 02 - 18 To9z56z20 .0002 ",
-			"updated_at  ": "2018 - 02 - 18 To9z56z20 .0002 ",
-			"project_deadline  ": null
+			"updated_at": "2018 - 02 - 18 To9z56z20 .0002 ",
+			"project_deadline": null
 		},
 
 		"talk": true,
@@ -50,9 +50,9 @@
 
 		"user": {
 
-			"username ": "marcis.ruben ",
-			"name ": "Marcis Ruben ",
-			"profile_url ": null
+			"username": "marcis.ruben ",
+			"name": "Marcis Ruben ",
+			"profile_url": null
 		}
 	},
 

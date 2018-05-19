@@ -53,44 +53,29 @@ fetch('API/eventData.json')
 	}
 });
 
- //    for(let i=0;i<projectData.length; i++){
-	//     var event = 
-	//           `<div class="accordion" id="eventCatalogue">
-	//           <div class="card">
-	//             <div class="" id="headingOne">
-	//               <h5 class="mb-0">
-	//                 <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-	//                   ${eventData[i].title}
-	//                 </button>
-	//               </h5>
-	//             </div>
+ 
+// Modal
+// Creating the moal behavior on Project list
+    `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectModalLong">
+      Launch demo modal
+    </button>
 
-	//             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#eventCatalogue">
-	//               <div class="card-body">
-	//                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, repellendus!
-	//               </div>
-	//             </div>
-	//           </div>
-	//         </div>`;
-
-	//     //console.log(event);
-	//     eventCatalogue.insertAdjacentHTML('beforeend',event);
-	// }
-
-	// `<div class="accordion" id="eventCatalogue">
-	//           <div class="card">
-	//             <div class="" id="headingOne">
-	//               <h5 class="mb-0">
-	//                 <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-	//                   ${eventData[i].title}
-	//                 </button>
-	//               </h5>
-	//             </div>
-
-	//             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#eventCatalogue">
-	//               <div class="card-body">
-	//                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, repellendus!
-	//               </div>
-	//             </div>
-	//           </div>
-	//         </div>`
+    <div class="modal fade" id="projectModalLong" tabindex="-1" role="dialog" aria-labelledby="projectModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="projectModalLongTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>`
