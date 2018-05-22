@@ -1,10 +1,10 @@
-// const currentEvent = {
-// 	"id": 13,
-// 	"title": "Prototyping Days #1",
-// 	"projectdeadline": null 
-// }
+const currentEvent = {
+	"id": 13,
+	"title": "Prototyping Days #1",
+	"projectdeadline": null 
+}
 
-var eventCatalogue = document.querySelector('#event-catalogue .card-body');
+document.querySelector('#current-event .card-title').innerHTML = currentEvent.title;
 
 function getProjectData(){
 	fetch('API/projectData.json')
@@ -18,11 +18,7 @@ function getProjectData(){
 }
 
 var projectData = getProjectData();
-// setTimeout(function(){
-// 	console.log(projectData,"projectData");
-// },1000)
-
-
+var eventCatalogue = document.querySelector('#event-catalogue .card-body');
 
 fetch('API/eventData.json')
 .then(function(eventData) {
@@ -32,11 +28,13 @@ fetch('API/eventData.json')
 	// console.log(eventData);
 
 	for(let i=0; i<eventData.length; i++){
-		var event = `
-		<div class="event-header mb-1" id="id${eventData[i].id}">
-		<h6 class="card-header">${eventData[i].title}</h6>
-			<div class="event-body"></div>
-		</div>`;
+		var event = `		
+		<div class="card-header mb-1 d-flex" data-toggle="collapse" data-target="#id${eventData[i].id}">
+			<h6>${eventData[i].title}</h6>
+			<i class="fas fa-angle-left ml-auto"></i>
+		</div>
+		<div id="id${eventData[i].id}" class="event-body collapse"></div>
+		`;
 
 		eventCatalogue.insertAdjacentHTML('beforeend',event);
 		// console.log(i," eventID ",eventData[i].id);
@@ -47,12 +45,18 @@ fetch('API/eventData.json')
 				// var project = `<li class="project">${projectData[j]['title']}</li>`;
 				var project = createProjectModal(projectData[j]['id'], projectData[j]['title'], projectData[j]['short_description'], projectData[j]['description']);
 
-				var eventBody = document.querySelector(` #id${eventData[i].id} .event-body`);
+				var eventBody = document.querySelector(`#id${eventData[i].id}`);
 				eventBody.insertAdjacentHTML('beforeend',project);
 	    		// console.log(j,projectData[i]["event"]["id"]);
 			}	
 		}
 	}
+})
+.then(function(){
+	$('#event-catalogue .card-header').on('click', function(e) {
+		// console.log(e);
+    $(this).find('[class*="angle"]').toggleClass('fa-angle-left fa-angle-down')
+});
 });
 
  
@@ -89,3 +93,7 @@ function createProjectModal(id, title, shortDescription, description){
 
     return projectModal;
 }
+
+
+
+

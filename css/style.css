@@ -1,8 +1,7 @@
-body {
-  background-color: white;
-  text-overflow: ellipsis; }
+.event-body button{
+	max-width: 80%;
+}
 
-  button{
-  	text-overflow: ellipsis;
-  	overflow: hidden;
-  }
+.navbar-brand{
+	max-width: 30px;
+}
