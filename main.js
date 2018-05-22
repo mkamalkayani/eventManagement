@@ -4,7 +4,9 @@ const currentEvent = {
 	"projectdeadline": null 
 }
 
-document.querySelector('#current-event .card-title').innerHTML = currentEvent.title;
+document.querySelector('.jumbotron .current-event').innerHTML = `<h4>${currentEvent.title}
+<span class="badge badge-secondary">New</span></h4>`;
+document.querySelector('.jumbotron .btn').setAttribute('href',`#id${currentEvent.id}`);
 
 function getProjectData(){
 	fetch('API/projectData.json')
@@ -37,17 +39,14 @@ fetch('API/eventData.json')
 		`;
 
 		eventCatalogue.insertAdjacentHTML('beforeend',event);
-		// console.log(i," eventID ",eventData[i].id);
 		
 		for(let j=0; j<projectData.length; j++){
 
 			if(eventData[i].id === projectData[j]["event"]["id"]){
-				// var project = `<li class="project">${projectData[j]['title']}</li>`;
 				var project = createProjectModal(projectData[j]['id'], projectData[j]['title'], projectData[j]['short_description'], projectData[j]['description']);
 
 				var eventBody = document.querySelector(`#id${eventData[i].id}`);
 				eventBody.insertAdjacentHTML('beforeend',project);
-	    		// console.log(j,projectData[i]["event"]["id"]);
 			}	
 		}
 	}
