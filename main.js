@@ -73,8 +73,7 @@ fetch('API/eventData.json')
 	return eventData.json();
 })
 .then(function(eventData) {
-	placeEvents(eventData);
-	angleUpDown();	
+	placeEvents(eventData);	
 	return eventData;
 })
 .then(function(eventData){
@@ -87,7 +86,6 @@ fetch('API/eventData.json')
 		eventCatalogue.innerHTML = "";
 		sortAlphabetically(eventData, 'title');
 		placeEvents(eventData);
-		angleUpDown();
 	})
 
 	// Sort by event id
@@ -98,7 +96,7 @@ fetch('API/eventData.json')
 		eventCatalogue.innerHTML = "";
 		sortNumerically(eventData, 'id');
 		placeEvents(eventData);
-		angleUpDown();
+
 	}) 
 })
 .then(function(){
@@ -108,9 +106,12 @@ fetch('API/eventData.json')
 
 // Modal behavior on Projects
 function createProjectModal(id, title, shortDescription, description){
-	var projectModal = `<button type="button" class="btn btn-primary ml-4 my-2 d-block text-truncate" data-toggle="modal" data-target="#projectid${id}">
-	${title}
-	</button>
+	var projectModal = `
+	<div>
+		<button type="button" class="btn btn-primary ml-4 my-2 d-block text-truncate" data-toggle="modal" data-target="#projectid${id}">
+		${title}
+		</button>
+	</div>
 
 	<div class="modal fade" id="projectid${id}" tabindex="-1" role="dialog" aria-labelledby="projectModalLongTitle" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
@@ -130,7 +131,6 @@ function createProjectModal(id, title, shortDescription, description){
 	<button type="button" class="btn btn-primary">Comment</button>
 	<button type="button" class="btn btn-primary mr-auto">Join</button>
 	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	<button type="button" class="btn btn-primary">Save changes</button>
 	</div>
 	</div>
 	</div>
@@ -143,9 +143,11 @@ function createProjectModal(id, title, shortDescription, description){
 function placeEvents(eventData){
 	for(let i=0; i<eventData.length; i++){
 		var event = `		
-		<div class="card-header mb-1 d-flex" data-toggle="collapse" data-target="#id${eventData[i].id}">
-		<h6>${eventData[i].title}</h6>
-		<i class="fas fa-angle-left ml-auto"></i>
+		<div class="card-header mb-1" data-toggle="collapse" data-target="#id${eventData[i].id}">
+			<div class="d-flex">
+			<h6>${eventData[i].title}</h6>
+			<i class="fas fa-angle-left ml-auto"></i>
+			</div>
 		</div>
 		<div id="id${eventData[i].id}" class="event-body collapse"></div>
 		`;
@@ -164,15 +166,14 @@ function placeEvents(eventData){
 	}
 }
 
-function angleUpDown(){
-	// Angle up and down on click
-	document.querySelectorAll('#event-catalogue #projects').forEach(function(event){
+// Angle UpDown Event
+document.querySelectorAll('#event-catalogue #projects').forEach(function(event){
 		// console.log(event);
 		event.addEventListener('click', function(e) {
-			$(this).find('[class*="angle"]').toggleClass('fa-angle-left fa-angle-down');
+			// console.log(e.target);
+			$(e.target).parent().find('[class*="angle"]').toggleClass('fa-angle-left fa-angle-down');
 		});
 	})
-}
 
 // 
 });

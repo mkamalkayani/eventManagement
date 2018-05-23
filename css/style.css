@@ -7,10 +7,7 @@
 	max-width: 30px;
 }
 
-/*#event-catalogue .card-header{
-	background-color: #89bf89;
-}*/
+.modal-footer{
+	flex-wrap: wrap;
+}
 
-/*#event-catalogue .card-body .card-header{
-	background-color: #91d691;
-}*/
