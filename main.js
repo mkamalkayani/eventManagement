@@ -1,13 +1,21 @@
+$( document ).ready(function() {
+
+// Current Event Data from Api
 const currentEvent = {
 	"id": 13,
 	"title": "Prototyping Days #1",
 	"projectdeadline": null 
 }
 
-document.querySelector('.jumbotron .current-event').innerHTML = `<h4>${currentEvent.title}
-<span class="badge badge-secondary">New</span></h4>`;
+// Set current event title
+document.querySelector('.jumbotron .current-event').innerHTML = `
+	<h4>${currentEvent.title}
+	<span class="badge badge-secondary">New</span></h4>`;
+
+// Goto current Event in Event Catalogue
 document.querySelector('.jumbotron .btn').setAttribute('href',`#id${currentEvent.id}`);
 
+// Fetch Project Data from Api
 function getProjectData(){
 	fetch('API/projectData.json')
 	.then(function(response) {  	
@@ -37,7 +45,7 @@ function sortAlphabetically(Data, parameter){
 	// console.log(Data);
 }
 
-//
+// Sort Numerically
 function sortNumerically(Data, parameter){
 	Data.sort(function(a, b) {
 	  if (a[parameter] < b[parameter]) {
@@ -50,7 +58,6 @@ function sortNumerically(Data, parameter){
 	  // names must be equal
 	  return 0;
 	});
-	console.log(Data);
 }
 
 var projectData = getProjectData();
@@ -65,37 +72,41 @@ fetch('API/eventData.json')
 	return eventData;
 })
 .then(function(eventData){
-	
-	// Sort alphabatically by title
-	$('.sort > .alphabatically').on('click', function(e){
+
+	// Sort by event ID
+	document.querySelector('.dropdownEventCatalogue > .alphabatically').addEventListener('click', function(e){
 		$(this).parent().find('.active').removeClass('active');
 		$(this).addClass('active');
 
 		eventCatalogue.innerHTML = "";
 		sortAlphabetically(eventData, 'title');
 		placeEvents(eventData);
-	});
+	})
 
 	// Sort by event ID
-	$('.sort > .event-id').on('click', function(e){
+	document.querySelector('.dropdownEventCatalogue > .event-id').addEventListener('click', function(e){
 		$(this).parent().find('.active').removeClass('active');
 		$(this).addClass('active');
 
 		eventCatalogue.innerHTML = "";
 		sortNumerically(eventData, 'id');
 		placeEvents(eventData);
-	})
+	}) 
 })
 .then(function(){
+	// Angle up and down on click
 	$('#event-catalogue .card-header').on('click', function(e) {
-		// console.log(e);
+		$(this).find('[class*="angle"]').toggleClass('fa-angle-left fa-angle-down')
+	});
+
+	// sort by deadline
+	$('#event-catalogue .card-header').on('click', function(e) {
 		$(this).find('[class*="angle"]').toggleClass('fa-angle-left fa-angle-down')
 	});
 });
 
 
-// Modal
-// Creating the moal behavior on Project list
+// Modal behavior on Projects
 function createProjectModal(id, title, shortDescription, description){
 	var projectModal = `<button type="button" class="btn btn-primary ml-4 my-2 d-block text-truncate" data-toggle="modal" data-target="#projectid${id}">
 	${title}
@@ -134,7 +145,9 @@ function placeEvents(eventData){
 		var event = `		
 		<div class="card-header mb-1 d-flex" data-toggle="collapse" data-target="#id${eventData[i].id}">
 		<h6>${eventData[i].title}</h6>
-		<i class="fas fa-angle-left ml-auto"></i>
+		<i class="fas fa-sort-alpha-down  ml-auto mr-2"></i>
+		<p>Deadline</p>
+		<i class="fas fa-angle-left"></i>
 		</div>
 		<div id="id${eventData[i].id}" class="event-body collapse"></div>
 		`;
@@ -152,6 +165,8 @@ function placeEvents(eventData){
 		}
 	}
 }
+
+});
 
 
 
