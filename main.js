@@ -13,7 +13,11 @@ document.querySelector('.jumbotron .current-event').innerHTML = `
 	<span class="badge badge-secondary">New</span></h4>`;
 
 // Goto current Event in Event Catalogue
-document.querySelector('.jumbotron .btn').setAttribute('href',`#id${currentEvent.id}`);
+document.querySelector('.jumbotron .btn').addEventListener('click', function(){
+	// Goto current Event in Event Catalogue
+	$(`#id${currentEvent.id}`).collapse('toggle');
+	$(`#id${currentEvent.id}`).parent().find(`[data-target="#id${currentEvent.id}"]`).find('i').toggleClass('fa-angle-left fa-angle-down');
+})
 
 // Fetch Project Data from Api
 function getProjectData(){
@@ -27,7 +31,8 @@ function getProjectData(){
 	})
 }
 
-// sort by name
+// sort Alphabatically
+// parameter is the object property to sort
 function sortAlphabetically(Data, parameter){
 	Data.sort(function(a, b) {
 		  var nameA = a[parameter].toUpperCase(); // ignore upper and lowercase
@@ -68,12 +73,13 @@ fetch('API/eventData.json')
 	return eventData.json();
 })
 .then(function(eventData) {
-	placeEvents(eventData);	
+	placeEvents(eventData);
+	angleUpDown();	
 	return eventData;
 })
 .then(function(eventData){
 
-	// Sort by event ID
+	// Sort by event title
 	document.querySelector('.dropdownEventCatalogue > .alphabatically').addEventListener('click', function(e){
 		$(this).parent().find('.active').removeClass('active');
 		$(this).addClass('active');
@@ -81,9 +87,10 @@ fetch('API/eventData.json')
 		eventCatalogue.innerHTML = "";
 		sortAlphabetically(eventData, 'title');
 		placeEvents(eventData);
+		angleUpDown();
 	})
 
-	// Sort by event ID
+	// Sort by event id
 	document.querySelector('.dropdownEventCatalogue > .event-id').addEventListener('click', function(e){
 		$(this).parent().find('.active').removeClass('active');
 		$(this).addClass('active');
@@ -91,18 +98,11 @@ fetch('API/eventData.json')
 		eventCatalogue.innerHTML = "";
 		sortNumerically(eventData, 'id');
 		placeEvents(eventData);
+		angleUpDown();
 	}) 
 })
 .then(function(){
-	// Angle up and down on click
-	$('#event-catalogue .card-header').on('click', function(e) {
-		$(this).find('[class*="angle"]').toggleClass('fa-angle-left fa-angle-down')
-	});
-
-	// sort by deadline
-	$('#event-catalogue .card-header').on('click', function(e) {
-		$(this).find('[class*="angle"]').toggleClass('fa-angle-left fa-angle-down')
-	});
+	
 });
 
 
@@ -145,9 +145,7 @@ function placeEvents(eventData){
 		var event = `		
 		<div class="card-header mb-1 d-flex" data-toggle="collapse" data-target="#id${eventData[i].id}">
 		<h6>${eventData[i].title}</h6>
-		<i class="fas fa-sort-alpha-down  ml-auto mr-2"></i>
-		<p>Deadline</p>
-		<i class="fas fa-angle-left"></i>
+		<i class="fas fa-angle-left ml-auto"></i>
 		</div>
 		<div id="id${eventData[i].id}" class="event-body collapse"></div>
 		`;
@@ -166,6 +164,17 @@ function placeEvents(eventData){
 	}
 }
 
+function angleUpDown(){
+	// Angle up and down on click
+	document.querySelectorAll('#event-catalogue #projects').forEach(function(event){
+		// console.log(event);
+		event.addEventListener('click', function(e) {
+			$(this).find('[class*="angle"]').toggleClass('fa-angle-left fa-angle-down');
+		});
+	})
+}
+
+// 
 });
 
 

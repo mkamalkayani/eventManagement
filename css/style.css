@@ -1,3 +1,4 @@
+
 .event-body button{
 	max-width: 80%;
 }
@@ -5,3 +6,11 @@
 .navbar-brand{
 	max-width: 30px;
 }
+
+/*#event-catalogue .card-header{
+	background-color: #89bf89;
+}*/
+
+/*#event-catalogue .card-body .card-header{
+	background-color: #91d691;
+}*/
