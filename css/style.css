@@ -2,6 +2,9 @@
 /*.event-body button{
 	max-width: 80%;
 }*/
+.container{
+	padding: 0;
+}
 
 .navbar-brand{
 	max-width: 30px;
@@ -11,7 +14,8 @@
 	flex-wrap: wrap;
 }
 
-@media (max-width: 575.98px) { 
+@media (max-width: 575.98px) {
+
 	.modal-footer [data-dismiss="modal"]{
 		margin-top: 10px;
 	}

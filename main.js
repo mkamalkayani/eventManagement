@@ -123,8 +123,8 @@ function placeEvents(eventData){
 		Sort Projects
 		</button>
 		<div class="dropdown-menu">
-		<a class="dropdown-item alphabatically" href="#">Alphabatically</a>
-		<a class="dropdown-item" href="#">By Deadline</a>
+		<a class="dropdown-item alphabatically" href="#id${eventData[i].id}">Alphabatically</a>
+		<a class="dropdown-item" href="#id${eventData[i].id}">By Deadline</a>
 		</div>
 		</div>`;
 
@@ -159,7 +159,6 @@ function sortAlpha(nodeList,appendTo){
 		appendTo.appendChild(p);
 	});
 }
-
 
 // 
 });
