@@ -31,38 +31,6 @@ function getProjectData(){
 	})
 }
 
-// parameter is the object property to sort
-function sortAlphabetically(Data, parameter){
-	Data.sort(function(a, b) {
-		  var nameA = a[parameter].toUpperCase(); // ignore upper and lowercase
-		  var nameB = b[parameter].toUpperCase(); // ignore upper and lowercase
-		  if (nameA < nameB) {
-		  	return -1;
-		  }
-		  if (nameA > nameB) {
-		  	return 1;
-		  }
-
-		  // names must be equal
-		  return 0;
-		});
-}
-
-// Sort Numerically
-function sortNumerically(Data, parameter){
-	Data.sort(function(a, b) {
-		if (a[parameter] < b[parameter]) {
-			return -1;
-		}
-		if (a[parameter] > b[parameter]) {
-			return 1;
-		}
-
-	  // names must be equal
-	  return 0;
-	});
-}
-
 var projectData = getProjectData();
 var eventCatalogue = document.querySelector('#event-catalogue .card-body');
 
@@ -90,20 +58,18 @@ fetch('API/eventData.json')
 		obj.addEventListener('click', function(e){
 			$(this).parent().find('.active').removeClass('active');
 			$(this).addClass('active');
-			var currentEventBox = e.path[4];
+			var currentEventBox = e.path[3];
 			projects = currentEventBox.querySelectorAll('.project-box');
-
 			sortAlpha(projects, currentEventBox);
 		})
 	})
 })
-.then()
 
 // Modal behavior on Projects
 function createProjectModal(id, title, shortDescription, description){
 	var projectModal = `
-	<div class="project-box">
-	<button type="button" class="btn btn-primary ml-4 my-2 d-block text-truncate" data-toggle="modal" data-target="#projectid${id}">
+	<div class="project-box mx-4">
+	<button type="button" class="btn btn-primary my-2 d-block text-truncate mw-100" data-toggle="modal" data-target="#projectid${id}">
 	${title}
 	</button>
 
@@ -111,7 +77,7 @@ function createProjectModal(id, title, shortDescription, description){
 	<div class="modal-dialog modal-lg" role="document">
 	<div class="modal-content">
 	<div class="modal-header">
-	<h5 class="modal-title" id="projectModalLongTitle">Project Title: ${title}</h5>
+	<h5 class="modal-title" id="projectModalLongTitle"><strong>Project Title:</strong> ${title}</h5>
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	<span aria-hidden="true">&times;</span>
 	</button>
