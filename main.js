@@ -9,8 +9,8 @@ const currentEvent = {
 
 // Set current event title
 document.querySelector('.jumbotron .current-event').innerHTML = `
-	<h4>${currentEvent.title}
-	<span class="badge badge-secondary">New</span></h4>`;
+<span class="badge badge-secondary">Current Event</span>
+<h4>${currentEvent.title}</h4>`;
 
 // Goto current Event in Event Catalogue
 document.querySelector('.jumbotron .btn').addEventListener('click', function(){
@@ -31,7 +31,6 @@ function getProjectData(){
 	})
 }
 
-// sort Alphabatically
 // parameter is the object property to sort
 function sortAlphabetically(Data, parameter){
 	Data.sort(function(a, b) {
@@ -47,18 +46,17 @@ function sortAlphabetically(Data, parameter){
 		  // names must be equal
 		  return 0;
 		});
-	// console.log(Data);
 }
 
 // Sort Numerically
 function sortNumerically(Data, parameter){
 	Data.sort(function(a, b) {
-	  if (a[parameter] < b[parameter]) {
-	  	return -1;
-	  }
-	  if (a[parameter] > b[parameter]) {
-	  	return 1;
-	  }
+		if (a[parameter] < b[parameter]) {
+			return -1;
+		}
+		if (a[parameter] > b[parameter]) {
+			return 1;
+		}
 
 	  // names must be equal
 	  return 0;
@@ -96,21 +94,17 @@ fetch('API/eventData.json')
 		eventCatalogue.innerHTML = "";
 		sortNumerically(eventData, 'id');
 		placeEvents(eventData);
-
-	}) 
+	})
 })
-.then(function(){
-	
-});
-
+.then()
 
 // Modal behavior on Projects
 function createProjectModal(id, title, shortDescription, description){
 	var projectModal = `
-	<div>
-		<button type="button" class="btn btn-primary ml-4 my-2 d-block text-truncate" data-toggle="modal" data-target="#projectid${id}">
-		${title}
-		</button>
+	<div class="project">
+	<button type="button" class="btn btn-primary ml-4 my-2 d-block text-truncate" data-toggle="modal" data-target="#projectid${id}">
+	${title}
+	</button>
 	</div>
 
 	<div class="modal fade" id="projectid${id}" tabindex="-1" role="dialog" aria-labelledby="projectModalLongTitle" aria-hidden="true">
@@ -139,41 +133,52 @@ function createProjectModal(id, title, shortDescription, description){
 	return projectModal;
 }
 
-
 function placeEvents(eventData){
 	for(let i=0; i<eventData.length; i++){
 		var event = `		
 		<div class="card-header mb-1" data-toggle="collapse" data-target="#id${eventData[i].id}">
-			<div class="d-flex">
-			<h6>${eventData[i].title}</h6>
-			<i class="fas fa-angle-left ml-auto"></i>
-			</div>
+		<div class="d-flex align-items-center">
+		<h6>${eventData[i].title}</h6>
+		<i class="fas fa-angle-left ml-auto"></i>
 		</div>
-		<div id="id${eventData[i].id}" class="event-body collapse"></div>
+		</div>
+		<div id="id${eventData[i].id}" class="event-body collapse">
+		</div>
 		`;
-
 		eventCatalogue.insertAdjacentHTML('beforeend',event);
-		
+
+		var eventBody = document.querySelector(`#id${eventData[i].id}`);
+		var sortEvent = `
+		<div id="sort-project" class="dropdown ml-4">
+		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown-id${eventData[i].id}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Sort Projects
+		</button>
+		<div class="dropdown-menu">
+		<a class="dropdown-item" href="#">Alphabatically</a>
+		<a class="dropdown-item" href="#">By Deadline</a>
+		</div>
+		</div>`;
+
+		eventBody.insertAdjacentHTML('beforeend',sortEvent);		
 		for(let j=0; j<projectData.length; j++){
 
 			if(eventData[i].id === projectData[j]["event"]["id"]){
 				var project = createProjectModal(projectData[j]['id'], projectData[j]['title'], projectData[j]['short_description'], projectData[j]['description']);
-
-				var eventBody = document.querySelector(`#id${eventData[i].id}`);
 				eventBody.insertAdjacentHTML('beforeend',project);
 			}	
 		}
 	}
+	angleUpDown();
 }
 
-// Angle UpDown Event
-document.querySelectorAll('#event-catalogue #projects').forEach(function(event){
-		// console.log(event);
+function angleUpDown(){
+	// Angle UpDown Event
+	document.querySelectorAll('#event-catalogue #events .card-header').forEach(function(event){
 		event.addEventListener('click', function(e) {
-			// console.log(e.target);
-			$(e.target).parent().find('[class*="angle"]').toggleClass('fa-angle-left fa-angle-down');
+			$(e.target).parent().find('[class*="angle"]').toggleClass('fa-angle-down fa-angle-left');
 		});
 	})
+}
 
 // 
 });

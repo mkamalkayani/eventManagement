@@ -11,3 +11,10 @@
 	flex-wrap: wrap;
 }
 
+@media (max-width: 575.98px) { 
+	.modal-footer [data-dismiss="modal"]{
+		margin-top: 10px;
+	}
+
+}
+
