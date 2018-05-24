@@ -1,9 +1,5 @@
-
-/*.event-body button{
-	max-width: 80%;
-}*/
 .container{
-	padding: 0;
+	padding: 0 8px;
 }
 
 .navbar-brand{
