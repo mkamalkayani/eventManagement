@@ -74,26 +74,27 @@ fetch('API/eventData.json')
 	placeEvents(eventData);	
 	return eventData;
 })
-.then(function(eventData){
+.then(function(){
 
-	// Sort by event title
+	// Sort Events by event title
 	document.querySelector('.dropdownEventCatalogue > .alphabatically').addEventListener('click', function(e){
 		$(this).parent().find('.active').removeClass('active');
 		$(this).addClass('active');
-
-		eventCatalogue.innerHTML = "";
-		sortAlphabetically(eventData, 'title');
-		placeEvents(eventData);
+		var events = document.querySelectorAll('.event-box');
+		var eventCatalogueBody = document.querySelector('#events');
+		sortAlpha(events,eventCatalogueBody);
 	})
 
-	// Sort by event id
-	document.querySelector('.dropdownEventCatalogue > .event-id').addEventListener('click', function(e){
-		$(this).parent().find('.active').removeClass('active');
-		$(this).addClass('active');
+	// Sort Projects by project title
+	document.querySelectorAll('#sort-project .alphabatically').forEach(function(obj){
+		obj.addEventListener('click', function(e){
+			$(this).parent().find('.active').removeClass('active');
+			$(this).addClass('active');
+			var currentEventBox = e.path[4];
+			projects = currentEventBox.querySelectorAll('.project-box');
 
-		eventCatalogue.innerHTML = "";
-		sortNumerically(eventData, 'id');
-		placeEvents(eventData);
+			sortAlpha(projects, currentEventBox);
+		})
 	})
 })
 .then()
@@ -101,11 +102,10 @@ fetch('API/eventData.json')
 // Modal behavior on Projects
 function createProjectModal(id, title, shortDescription, description){
 	var projectModal = `
-	<div class="project">
+	<div class="project-box">
 	<button type="button" class="btn btn-primary ml-4 my-2 d-block text-truncate" data-toggle="modal" data-target="#projectid${id}">
 	${title}
 	</button>
-	</div>
 
 	<div class="modal fade" id="projectid${id}" tabindex="-1" role="dialog" aria-labelledby="projectModalLongTitle" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
@@ -128,6 +128,7 @@ function createProjectModal(id, title, shortDescription, description){
 	</div>
 	</div>
 	</div>
+	</div>
 	</div>`
 
 	return projectModal;
@@ -135,7 +136,8 @@ function createProjectModal(id, title, shortDescription, description){
 
 function placeEvents(eventData){
 	for(let i=0; i<eventData.length; i++){
-		var event = `		
+		var event = `
+		<div class="event-box">		
 		<div class="card-header mb-1" data-toggle="collapse" data-target="#id${eventData[i].id}">
 		<div class="d-flex align-items-center">
 		<h6>${eventData[i].title}</h6>
@@ -143,6 +145,7 @@ function placeEvents(eventData){
 		</div>
 		</div>
 		<div id="id${eventData[i].id}" class="event-body collapse">
+		</div>
 		</div>
 		`;
 		eventCatalogue.insertAdjacentHTML('beforeend',event);
@@ -154,7 +157,7 @@ function placeEvents(eventData){
 		Sort Projects
 		</button>
 		<div class="dropdown-menu">
-		<a class="dropdown-item" href="#">Alphabatically</a>
+		<a class="dropdown-item alphabatically" href="#">Alphabatically</a>
 		<a class="dropdown-item" href="#">By Deadline</a>
 		</div>
 		</div>`;
@@ -179,6 +182,18 @@ function angleUpDown(){
 		});
 	})
 }
+
+function sortAlpha(nodeList,appendTo){
+	nodeArr = Array.from(nodeList);
+	nodeArr.sort(function (a, b) {
+		return a.textContent > b.textContent ? 1 : -1;
+	});
+
+	nodeArr.forEach(function (p) {
+		appendTo.appendChild(p);
+	});
+}
+
 
 // 
 });
